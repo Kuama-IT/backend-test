@@ -1,0 +1,7 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "I never used git and github, I am not sure of what I am doing ¯\_(ツ)_/¯. Please read HELP.md"

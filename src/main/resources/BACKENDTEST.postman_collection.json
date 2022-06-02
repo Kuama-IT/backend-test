@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "0be57636-b96b-48d5-8cc3-e2da5b525973",
+		"name": "BACKENDTEST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Weirdo?",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/someoneSaysImWeirdButIDontCareIlikeIt",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"someoneSaysImWeirdButIDontCareIlikeIt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/categories",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Shot drinks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/shotDrinks",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"shotDrinks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sprits drinks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/spritzDrinks",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"spritzDrinks"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
