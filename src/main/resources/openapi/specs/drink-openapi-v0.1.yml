@@ -1,0 +1,226 @@
+openapi: 3.0.3
+info:
+  title: Kuama Backend Developer Test
+  description: |-
+    This is a sample test based on the OpenAPI 3.0 specification.
+  contact:
+    email: riccardofogli96@gmail.com
+  version: "1.0"
+
+tags:
+  - name: "BarMenu"
+
+paths:
+  /drinks/categories:
+    get:
+      tags:
+        - BarMenu
+      summary: Return all drinks categories
+      operationId: getAllDrinksCategories
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+
+  /drinks/categories/{category}:
+    get:
+      tags:
+        - BarMenu
+      summary: Return all drinks of a specific category
+      operationId: getAllDrinksByCategory
+      parameters:
+        - name: category
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "shot"
+        - name: language
+          in: query
+          required: false
+          schema:
+            type: string
+            default: EN
+            enum:
+              - IT
+              - ES
+              - DE
+              - FR
+              - EN
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrinksResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+
+  /drinks/{name}:
+    get:
+      tags:
+        - BarMenu
+      summary: Return all drinks of a specific name
+      operationId: getAllDrinksByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "spritz"
+        - name: language
+          in: query
+          required: false
+          schema:
+            type: string
+            default: EN
+            enum:
+              - IT
+              - ES
+              - DE
+              - FR
+              - EN
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrinksResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+components:
+  schemas:
+    DrinksResponse:
+      type: object
+      properties:
+        drinks:
+          type: "array"
+          items:
+            $ref: '#/components/schemas/Drink'
+
+    CategoryResponse:
+      type: object
+      properties:
+        categories:
+          type: "array"
+          items:
+            type: string
+            example: "Cocktail"
+
+    Drink:
+      type: object
+      properties:
+        name:
+          type: "string"
+        glass:
+          type: "string"
+        instructions:
+          type: string
+          example: "instruction 1"
+        ingredients:
+          type: array
+          items:
+            type: string
+            example: "ingredients 1"
+        thumbnail:
+          type: "string"
+
+    ErrorApiResponse:
+      type: "object"
+      properties:
+        code:
+          type: "string"
+        message:
+          type: "string"
