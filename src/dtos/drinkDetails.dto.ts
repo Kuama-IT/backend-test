@@ -1,0 +1,63 @@
+import { z } from 'zod';
+
+// Define schemas
+export const schemaDrinkDetailDto = z.object({
+    idDrink: z.string().nonempty(),
+    strDrink: z.string().nonempty(),
+    strDrinkAlternate: z.string().nullable(),
+    strTags: z.string().nullable(),
+    strVideo: z.string().nullable(),
+    strCategory: z.string().nonempty().nullable(),
+    strIBA: z.string().nullable(),
+    strAlcoholic: z.string().nonempty(),
+    strGlass: z.string().nonempty(),
+    strInstructions: z.string().nullable(),
+    strInstructionsES: z.string().nullable(),
+    strInstructionsDE: z.string().nullable(),
+    strInstructionsFR: z.string().nullable(),
+    strInstructionsIT: z.string().nullable(),
+    'strInstructionsZH-HANS': z.string().nullable(),
+    'strInstructionsZH-HANT': z.string().nullable(),
+    strDrinkThumb: z.string().nonempty(),
+    strIngredient1: z.string().nullable(),
+    strIngredient2: z.string().nullable(),
+    strIngredient3: z.string().nullable(),
+    strIngredient4: z.string().nullable(),
+    strIngredient5: z.string().nullable(),
+    strIngredient6: z.string().nullable(),
+    strIngredient7: z.string().nullable(),
+    strIngredient8: z.string().nullable(),
+    strIngredient9: z.string().nullable(),
+    strIngredient10: z.string().nullable(),
+    strIngredient11: z.string().nullable(),
+    strIngredient12: z.string().nullable(),
+    strIngredient13: z.string().nullable(),
+    strIngredient14: z.string().nullable(),
+    strIngredient15: z.string().nullable(),
+    strMeasure1: z.string().nullable(),
+    strMeasure2: z.string().nullable(),
+    strMeasure3: z.string().nullable(),
+    strMeasure4: z.string().nullable(),
+    strMeasure5: z.string().nullable(),
+    strMeasure6: z.string().nullable(),
+    strMeasure7: z.string().nullable(),
+    strMeasure8: z.string().nullable(),
+    strMeasure9: z.string().nullable(),
+    strMeasure10: z.string().nullable(),
+    strMeasure11: z.string().nullable(),
+    strMeasure12: z.string().nullable(),
+    strMeasure13: z.string().nullable(),
+    strMeasure14: z.string().nullable(),
+    strMeasure15: z.string().nullable(),
+    strImageSource: z.string().nullable(),
+    strImageAttribution: z.string().nullable(),
+    strCreativeCommonsConfirmed: z.string().nullable(),
+    dateModified: z.string().nullable(),
+});
+
+export const schemaDrinkDetailsDto = z.object({
+    drinks: z.array(schemaDrinkDetailDto),
+});
+
+//Define Typescript type
+export type DrinkDetailsDto = z.infer<typeof schemaDrinkDetailsDto>;
