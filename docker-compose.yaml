@@ -1,0 +1,45 @@
+services:
+  drinks-postgres:
+    build:
+      context: .
+      dockerfile: ./db/Dockerfile
+    image: "backend-test/drinks-postgres"
+    container_name: ${DRINKS_PG_CONTAINER_NAME}
+    environment:
+      POSTGRES_DB: ${DRINKS_POSTGRES_DB}
+      POSTGRES_USER: ${DRINKS_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${DRINKS_POSTGRES_PASSWORD}
+    volumes:
+      - ./db/drinks-db-volume:/var/lib/postgresql/data
+    ports:
+      - "5444:5432"
+    networks:
+      - default
+    restart: unless-stopped
+
+  drinks-backend:
+    build:
+      context: .
+      dockerfile: ./be/Dockerfile
+    depends_on:
+      - drinks-postgres
+    image: "backend-test/drinks-backend"
+    container_name: ${DRINKS_BACKEND_CONTAINER_NAME}
+    environment:
+      DRINKS_PG_CONTAINER_NAME: ${DRINKS_PG_CONTAINER_NAME}
+      DRINKS_POSTGRES_PORT: ${DRINKS_POSTGRES_PORT}
+      DRINKS_POSTGRES_PASSWORD: ${DRINKS_POSTGRES_PASSWORD}
+      DRINKS_POSTGRES_USER: ${DRINKS_POSTGRES_USER}
+      DRINKS_POSTGRES_DB: ${DRINKS_POSTGRES_DB}
+    ports:
+      - "3001:3000"
+    networks:
+      - default
+
+volumes:
+  drinks-db-volume:
+    external: true
+
+networks:
+  default:
+    name: backend-test-network
